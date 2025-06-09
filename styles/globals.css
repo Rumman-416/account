@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-robo;
+}
+body {
+  @apply dark:bg-[#000];
+}
+
+h4,
+h5,
+h6 {
+  @apply font-roboTitle;
+}
+
+p,
+span {
+  @apply font-robo;
+}
+
+.y_container {
+  @apply lg:py-[2.5vw] py-10;
+}
+
+.text-color-header {
+  @apply dark:text-white text-[#036];
+}
+.text-color {
+  @apply dark:text-white text-[#000];
+}
+
+.heading {
+  @apply text-3xl lg:text-[2.188vw];
+}
