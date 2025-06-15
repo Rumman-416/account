@@ -17,44 +17,26 @@ import {
   FreeMode,
   Thumbs,
 } from "swiper/modules";
+import BannerHeading from "../ReusableComponent/BannerHeading";
+import { cleanImage } from "@/services/imageHandling";
 
-const HomeBanner = () => {
+const HomeBanner = ({ data }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(1); // Track current slide
   const list = [
     {
-      img: "/images/home/h1.webp",
-      title: "An Unconventional Path In World Of Real-Estate",
-      content:
-        "Lorem ipsum dolor sit amet consectetur. Egestas vel pulvinar lobortis",
+      img: "/images/homeBanner/image1.jpeg",
     },
     {
-      img: "/images/home/h1.webp",
-      title: "An Unconventional Path In World Of Real-Estate",
-      content:
-        "Lorem ipsum dolor sit amet consectetur. Egestas vel pulvinar lobortis",
+      img: "/images/homeBanner/image2.png",
     },
     {
-      img: "/images/home/h1.webp",
-      title: "An Unconventional Path In World Of Real-Estate",
-      content:
-        "Lorem ipsum dolor sit amet consectetur. Egestas vel pulvinar lobortis",
+      img: "/images/homeBanner/image3.png",
+    },
+    {
+      img: "/images/homeBanner/image4.png",
     },
   ];
-  // const list = [
-  //   {
-  //     img: "/images/homeBanner/image1.jpeg",
-  //   },
-  //   {
-  //     img: "/images/homeBanner/image2.png",
-  //   },
-  //   {
-  //     img: "/images/homeBanner/image3.png",
-  //   },
-  //   {
-  //     img: "/images/homeBanner/image4.png",
-  //   },
-  // ];
   const totalSlides = list.length;
   const handleScroll = () => {
     window.scrollTo({
@@ -67,17 +49,16 @@ const HomeBanner = () => {
     <div className="min-h-[100dvh] relative">
       <div className="bg-black bg-opacity-35 size-full absolute z-[5]"></div>
       <div className="absolute flex flex-col justify-center items-center h-full w-full z-[6] heading-banner">
-        {/* <BannerHeading
+        <BannerHeading
           heading={data?.title?.split(" ").slice(0, 3).join(" ")}
           italic={data?.title
             ?.split(" ")
             .slice(3, data?.title.length)
             .join(" ")}
-        /> 
+        />
         <p className="content-sm relative after:content:[''] after:absolute after:top-0 flex justify-center after:w-[6.25vw] after:h-[1px] after:bg-white pt-[0.417vw]">
           {data?.subtitle}
-        </p>*/}
-        <h6 className=" heading text-white">All Services under one roof</h6>
+        </p>
       </div>
       <div className="absolute size-full overflow-hidden">
         <Swiper
@@ -108,14 +89,14 @@ const HomeBanner = () => {
           ]}
           className="banner-swiper"
         >
-          {list?.map((item, index) => (
+          {data?.bannerImages?.map((item, index) => (
             <SwiperSlide key={index}>
               <div className=" ">
                 <Image
                   height={1000}
                   width={1000}
                   className="w-full h-[100dvh] object-cover zoom-in-zoom-out relative "
-                  src={item?.img}
+                  src={cleanImage(item?.url)}
                   alt={"banner"}
                 />
               </div>
@@ -130,7 +111,7 @@ const HomeBanner = () => {
             onClick={handleScroll} // Add onClick handler
           >
             <Image
-              src="\icons\arrow-down.svg"
+              src="/images/scrollarrow.svg"
               width={1000}
               height={1000}
               alt="scroll down"
@@ -168,14 +149,14 @@ const HomeBanner = () => {
             modules={[Autoplay, FreeMode, Thumbs]}
             className="mini-swiper"
           >
-            {list?.map((item, index) => (
+            {data?.bannerImages?.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-col gap-[0.625vw] justify-center items-start my-8">
                   <Image
                     height={1000}
                     width={1000}
                     className="w-[12.502vw] h-[8.037vw] object-cover"
-                    src={item?.img}
+                    src={cleanImage(item?.url)}
                     alt={"banner"}
                   />
                 </div>

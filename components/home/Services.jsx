@@ -40,7 +40,7 @@ const Services = () => {
     offset: ["start start", "end end"],
   });
   return (
-    <div ref={container} className=" container y_container mx-auto ">
+    <div ref={container} className=" container y_container mx-auto relative ">
       {data.map((item, index) => {
         const targetScale = 1 - (data.length - index) * 0.05;
         return (

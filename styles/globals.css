@@ -7,9 +7,21 @@
   @apply font-robo;
 }
 body {
-  @apply dark:bg-[#000];
+  @apply bg-[#E8EDE6];
 }
 
+.bg-secondary {
+  @apply bg-[#E8EDE6];
+}
+.bg-primary {
+  @apply bg-[#1E3C3E];
+}
+.text-secondary {
+  @apply text-[#E8EDE6];
+}
+.text-primary {
+  @apply text-[#1E3C3E];
+}
 h4,
 h5,
 h6 {
@@ -21,17 +33,27 @@ span {
   @apply font-robo;
 }
 
-.y_container {
+.containery {
   @apply lg:py-[2.5vw] py-10;
 }
-
-.text-color-header {
-  @apply dark:text-white text-[#036];
-}
-.text-color {
-  @apply dark:text-white text-[#000];
+.containerx {
+  @apply lg:px-[8.5vw] md:px-10 px-5;
 }
 
 .heading {
-  @apply text-3xl lg:text-[2.188vw];
+  @apply text-3xl lg:text-[3vw];
+}
+.heading-md {
+  @apply text-2xl lg:text-[2.5vw];
+}
+.heading-sm {
+  @apply text-xl lg:text-[1.8vw];
+}
+
+.content {
+  @apply text-xs md:text-sm lg:text-[1vw];
+}
+
+.rounded-box {
+  @apply p-3 lg:p-[2vw]  rounded-xl;
 }

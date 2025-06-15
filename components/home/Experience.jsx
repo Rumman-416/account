@@ -27,7 +27,7 @@ const Experience = () => {
   return (
     <div className="bg-[url('/images/home/experience.jpg')] bg-cover bg-center bg-fixed relative">
       <div className=" bg-black bg-opacity-45 absolute size-full" />
-      <div className=" container mx-auto relative z-[1] y_container text-white">
+      <div className=" containerx relative z-[1] containery text-white">
         <h3 className="heading  text-center mb-[1.8vw]">Experience</h3>
         <p className=" mb-[1.8vw]">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia

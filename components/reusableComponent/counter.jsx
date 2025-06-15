@@ -26,7 +26,7 @@ const Counter = ({ start, end, duration, suffix }) => {
   }, [inView, start, end, duration]);
 
   return (
-    <p className="text-center heading" ref={ref}>
+    <h6 className="text-center heading" ref={ref}>
       {inView ? (
         <>
           {count} {suffix}
@@ -34,7 +34,7 @@ const Counter = ({ start, end, duration, suffix }) => {
       ) : (
         <>0</>
       )}
-    </p>
+    </h6>
   );
 };
 
