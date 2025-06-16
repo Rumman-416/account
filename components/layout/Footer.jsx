@@ -126,9 +126,9 @@ const Footer = () => {
     },
   ];
   return (
-    <div className="bg-[url(/images/footer/bg2.png)] bg-no-repeat bg-top bg-cover bg-primary overflow-hidden text-secondary">
+    <div className="max-lg:mt-20 bg-primary overflow-hidden text-secondary">
       <>
-        <div className=" lg:w-[70%] containerx ">
+        <div className=" lg:w-[70%] containerx flex flex-col gap-5 lg:gap-[1.2vw] pt-8">
           <Title title={"contact us"} />
           <h6 className=" heading-sm  font-medium lg:font-semibold uppercase">
             Corporate Office Details
@@ -152,47 +152,11 @@ const Footer = () => {
                 ))}
               </div>
             ))}
-            {/* <div>
-              <h6 className=" heading-sm   font-medium lg:font-semibold uppercase">
-                our projects
-              </h6>
-              {projects.map((item, index) => (
-                <Link href={item.link} key={index}>
-                  <p className=" font-medium lg:font-semibold cursor-pointer">
-                    {item.name}
-                  </p>
-                </Link>
-              ))}
-            </div>
-            <div>
-              <h6 className=" heading-sm  font-medium lg:font-semibold uppercase">
-                useful links
-              </h6>
-              {links.map((item, index) => (
-                <Link href={item.link} key={index}>
-                  <p className=" font-medium lg:font-semibold cursor-pointer">
-                    {item.name}
-                  </p>
-                </Link>
-              ))}
-            </div>
-            <div>
-              <h6 className=" heading-sm  font-medium lg:font-semibold uppercase">
-                CSR
-              </h6>
-              {csr.map((item, index) => (
-                <Link href={item.link} key={index}>
-                  <p className=" font-medium lg:font-semibold cursor-pointer">
-                    {item.name}
-                  </p>
-                </Link>
-              ))}
-            </div> */}
           </div>
         </div>
       </>
-      <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between items-center mx-10 lg:mx-20">
-        <Image height={164} width={100} src={"/icons/logo.svg"} alt="logo" />
+      <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between items-center mx-10 lg:mx-20 my-5">
+        <Image height={50} width={50} src={"/logoWhite.svg"} alt="logo" />
 
         <p className=" content ">
           © 2025 DIAMOND GROUP. All Rights Reserved. |{" "}

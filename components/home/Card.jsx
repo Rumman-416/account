@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import React, { useRef } from "react";
+import Button from "../layout/Button";
 
 const Card = ({ index, item, progress, range, targetScale }) => {
   const container = useRef(null);
@@ -18,15 +19,20 @@ const Card = ({ index, item, progress, range, targetScale }) => {
       <div
         key={index}
         ref={container}
-        className=" h-screen flex justify-center items-center sticky top-0 "
+        className=" h-screen flex justify-center items-center sticky top-0 text-primary "
       >
         <motion.div
           style={{ scale, top: `calc(0% + ${index * 25}px)` }}
-          className={`sm:w-10/12  lg:w-9/12 mx-auto ${item.color} p-4 lg:p-[2.5vw] rounded-xl relative`}
+          className={`sm:w-10/12  lg:w-9/12 mx-auto border  bg-secondary rounded-box relative shadow-2xl`}
         >
-          <h5 className=" heading text-white text-center mb-8">{item.title}</h5>
+          <h5 className=" heading  text-center mb-8">{item.title}</h5>
           <div className=" flex flex-col md:flex-row justify-between items-start gap-5 w-full">
-            <p className=" text-white w-[40%]">{item.Content}</p>
+            <div className="md:w-[40%]">
+              <p className="  ">{item.Content}</p>
+              <div className=" mt-8">
+                <Button text={"Know More"} white={false} />
+              </div>
+            </div>
             <div className="h-[13rem] lg:h-[19vw] w-full md:w-[60%]  rounded-xl overflow-hidden">
               <motion.div style={{ scale: imageScale }} className=" size-full">
                 <Image
