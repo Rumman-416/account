@@ -126,28 +126,25 @@ const Footer = () => {
     },
   ];
   return (
-    <div className="max-lg:mt-20 bg-primary overflow-hidden text-secondary">
+    <div className=" bg-primary overflow-hidden text-secondary">
       <>
-        <div className=" lg:w-[70%] containerx flex flex-col gap-5 lg:gap-[1.2vw] pt-8">
+        {/* <div className=" bg-black bg-opacity-55 absolute size-full" /> */}
+        <div className=" lg:w-[70%] containerx relative z-[1] flex flex-col gap-5 lg:gap-[1.2vw] pt-8">
           <Title title={"contact us"} />
-          <h6 className=" heading-sm  font-medium lg:font-semibold uppercase">
-            Corporate Office Details
-          </h6>
-          <p className="content  mb-8 lg:mb-[3.125vw]">
+          {/* <h6 className=" heading-sm uppercase">Corporate Office Details</h6> */}
+          <p className="content  ">
             2nd Floor Alom House, 7B Pretoria Street Kolkata, India, PIN -
             700071
           </p>
-          <div className="flex flex-wrap gap-5 justify-between lg:justify-start items-start lg:gap-[7.813vw]">
+          <div className="flex flex-wrap gap-5 justify-between lg:justify-start items-start lg:gap-[7.813vw] my-8 lg:my-[2.125vw]">
             {data?.map((item, index) => (
               <div key={index}>
-                <h6 className=" heading-sm   font-medium lg:font-semibold uppercase">
+                <h6 className=" content mb-3 font-medium uppercase">
                   {item?.title}
                 </h6>
                 {item?.linkTab?.map((sitem, sindex) => (
-                  <Link href={`/${sitem.link}`} key={sindex}>
-                    <p className=" font-medium lg:font-semibold cursor-pointer content">
-                      {sitem.name}
-                    </p>
+                  <Link href={`${sitem.link}`} key={sindex}>
+                    <p className="  cursor-pointer content-sm">{sitem.name}</p>
                   </Link>
                 ))}
               </div>
@@ -155,7 +152,7 @@ const Footer = () => {
           </div>
         </div>
       </>
-      <div className="flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between items-center mx-10 lg:mx-20 my-5">
+      <div className="flex relative z-[1] flex-col md:flex-row gap-5 md:gap-0 md:justify-between items-center mx-10 lg:mx-20 my-5">
         <Image height={50} width={50} src={"/logoWhite.svg"} alt="logo" />
 
         <p className=" content ">

@@ -19,10 +19,10 @@ const HeroSection = () => {
 
   return (
     <div className="containerx relative h-screen flex justify-center items-center overflow-hidden">
-      <div className="absolute sm:left-5 top-[8.5vw] lg:left-[4vw]">
+      <div className="absolute sm:left-5 top-20 lg:top-[8.5vw] lg:left-[4vw]">
         <div
           ref={(el) => (animate.current[0] = el)}
-          className="md:rotate-[-10deg] rounded-lg relative h-[8rem] w-[16rem] lg:h-[12vw] lg:w-[20vw] after:size-full after:bg-[#1E3C3E] after:rounded-lg after:absolute after:z-[-1] after:-right-5 after:-bottom-5 lg:after:right-[-1.5vw] lg:after:bottom-[-1.5vw]"
+          className="md:rotate-[-10deg] rounded-lg relative h-[8rem] w-[16rem] lg:h-[12vw] lg:w-[20vw] after:size-full after:bg-[#F5683A] after:rounded-lg after:absolute after:z-[-1] after:-right-5 after:-bottom-5 lg:after:right-[-1.5vw] lg:after:bottom-[-1.5vw]"
         >
           <Image
             height={150}
@@ -34,10 +34,10 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute sm:right-10 bottom-[8.5vw] lg:right-[4vw]">
+      <div className="absolute sm:right-10 bottom-20 lg:bottom-[8.5vw] lg:right-[4vw]">
         <div
           ref={(el) => (animate.current[1] = el)}
-          className="md:rotate-[10deg] rounded-lg relative h-[8rem] w-[16rem] lg:h-[12vw] lg:w-[20vw] after:size-full after:bg-[#1E3C3E] after:rounded-lg after:absolute after:z-[-1] after:-right-5 after:-bottom-5 lg:after:right-[-1.5vw] lg:after:bottom-[-1.5vw]"
+          className="md:rotate-[10deg] rounded-lg relative h-[8rem] w-[16rem] lg:h-[12vw] lg:w-[20vw] after:size-full after:bg-[#F5683A] after:rounded-lg after:absolute after:z-[-1] after:-right-5 after:-bottom-5 lg:after:right-[-1.5vw] lg:after:bottom-[-1.5vw]"
         >
           <Image
             height={150}

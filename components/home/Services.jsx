@@ -40,7 +40,13 @@ const Services = () => {
     offset: ["start start", "end end"],
   });
   return (
-    <div ref={container} className=" container y_container mx-auto relative ">
+    <div
+      ref={container}
+      className=" containerx containery mx-auto relative flex justify-center items-center flex-col"
+    >
+      <h6 className=" heading text-[#333] text-center absolute top-20 lg:top-[6vw]">
+        Our Services
+      </h6>
       {data.map((item, index) => {
         const targetScale = 1 - (data.length - index) * 0.05;
         return (

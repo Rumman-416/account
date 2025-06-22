@@ -25,10 +25,10 @@ const Card = ({ index, item, progress, range, targetScale }) => {
           style={{ scale, top: `calc(0% + ${index * 25}px)` }}
           className={`sm:w-10/12  lg:w-9/12 mx-auto border  bg-secondary rounded-box relative shadow-2xl`}
         >
-          <h5 className=" heading  text-center mb-8">{item.title}</h5>
+          <h5 className=" heading-md  text-center mb-8 ">{item.title}</h5>
           <div className=" flex flex-col md:flex-row justify-between items-start gap-5 w-full">
             <div className="md:w-[40%]">
-              <p className="  ">{item.Content}</p>
+              <p className="text-[#333] content">{item.Content}</p>
               <div className=" mt-8">
                 <Button text={"Know More"} white={false} />
               </div>
