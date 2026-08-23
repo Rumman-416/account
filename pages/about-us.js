@@ -6,12 +6,13 @@ import React from "react";
 const aboutUs = () => {
   const data = {
     img: "/images/banner/abt.jpg",
-    title: "about us",
+    title: "About Us",
   };
   return (
     <div>
       <Banner data={data} />
       <Overview />
+      <div className="hr-gradient" />
       <MissionVision />
     </div>
   );

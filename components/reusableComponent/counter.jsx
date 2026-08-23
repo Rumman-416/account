@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 const Counter = ({ start, end, duration, suffix }) => {
   const [count, setCount] = useState(0);
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   useEffect(() => {
@@ -15,7 +15,10 @@ const Counter = ({ start, end, duration, suffix }) => {
         const elapsed = timestamp - startTimestamp;
         if (elapsed < duration) {
           const progress = elapsed / duration;
-          setCount(Math.floor(start + (end - start) * progress));
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const val = start + (end - start) * eased;
+          setCount(end % 1 !== 0 ? parseFloat(val.toFixed(1)) : Math.floor(val));
           requestAnimationFrame(step);
         } else {
           setCount(end);
@@ -26,13 +29,17 @@ const Counter = ({ start, end, duration, suffix }) => {
   }, [inView, start, end, duration]);
 
   return (
-    <h6 className="text-center heading" ref={ref}>
+    <h6
+      ref={ref}
+      className="text-center text-2xl md:text-3xl lg:text-[2.2vw] font-bold text-white"
+    >
       {inView ? (
         <>
-          {count} {suffix}
+          {count}
+          {suffix}
         </>
       ) : (
-        <>0</>
+        <>0{suffix}</>
       )}
     </h6>
   );

@@ -5,7 +5,7 @@ import React from "react";
 const contactUs = () => {
   const data = {
     img: "/images/banner/abt.jpg",
-    title: "Contact Us ",
+    title: "Contact Us",
   };
   return (
     <>

@@ -1,0 +1,286 @@
+[
+    {
+        "banner": {
+            "img": "/images/banner/abt.jpg",
+            "title": "Registration"
+        },
+        "slug": "registration",
+        "name": "Registration",
+        "description": "End‑to‑end compliance and licence procurement for new and existing businesses.",
+        "image": "/images/sevices/registration.jpg",
+        "subServices": [
+            {
+                "name": "GST Registration",
+                "data": "Obtain a GSTIN and enable your business to legally collect and remit Goods & Services Tax across India."
+            },
+            {
+                "name": "GST Amendments",
+                "data": "Update core or non‑core fields (address, directors, phone, etc.) in an existing GST registration without penalties."
+            },
+            {
+                "name": "GST Cancellation",
+                "data": "Close a GST account for discontinued, merged, or turnover‑exempt businesses and receive final clearance."
+            },
+            {
+                "name": "Factory Licence Registration",
+                "data": "Secure approval under the Factories Act, 1948 for premises involved in manufacturing processes."
+            },
+            {
+                "name": "Labour Licence Registration (Contractor & Principle Employer)",
+                "data": "Register contractors and principal employers under the CLRA Act to employ contract labour legally."
+            },
+            {
+                "name": "PF Registration",
+                "data": "Enroll establishments with 20+ employees under the EPF & MP Act for provident‑fund compliance."
+            },
+            {
+                "name": "ESIC Registration",
+                "data": "Register organisations with 10+ employees for Employee State Insurance to provide medical benefits."
+            },
+            {
+                "name": "ESIC & PF Registration",
+                "data": "Bundled service that simultaneously registers your entity under both EPFO and ESIC portals."
+            },
+            {
+                "name": "MLWF Registration",
+                "data": "Get covered under the Maharashtra Labour Welfare Fund for mandatory periodic contributions."
+            },
+            {
+                "name": "Udyam Registration",
+                "data": "Obtain an MSME/Udyam certificate for availing government incentives, subsidies and bank credit schemes."
+            },
+            {
+                "name": "PTEC Registration",
+                "data": "Register individuals and entities for Professional Tax Enrolment Certificate to pay annual PT in Maharashtra."
+            },
+            {
+                "name": "PTRC Registration",
+                "data": "Obtain Professional Tax Registration Certificate for employers to deduct and remit PT for employees."
+            },
+            {
+                "name": "Food License",
+                "data": "Acquire FSSAI (FoSCoS) licence for food manufacturing, storage, distribution or retail operations."
+            },
+            {
+                "name": "Import Export Registration",
+                "data": "Get an IEC (Import Export Code) from DGFT to legally import or export goods and services."
+            },
+            {
+                "name": "Shop & Establishment Registration",
+                "data": "Register commercial establishments under the local S&E Act for operating licences and labour compliance."
+            },
+            {
+                "name": "MPCB Registration",
+                "data": "Secure consents (Consent to Establish / Operate) from the Maharashtra Pollution Control Board."
+            },
+            {
+                "name": "Udyam Amendments",
+                "data": "Modify enterprise details (plant, activity, investment, etc.) in an existing Udyam MSME certificate."
+            },
+            {
+                "name": "Trademark/ Copy Right Registration",
+                "data": "File and protect brand names, logos, slogans or creative works under TM and Copyright laws."
+            },
+            {
+                "name": "Partnership Firm Registration",
+                "data": "Draft partnership deed and register the firm with Registrar of Firms for legal recognition."
+            },
+            {
+                "name": "Startup Registration",
+                "data": "Register under DPIIT’s Startup India program to claim tax holidays, IPR benefits and funding support."
+            },
+            {
+                "name": "HUF Registration",
+                "data": "Set up a Hindu Undivided Family entity and obtain PAN for availing separate tax slab benefits."
+            },
+            {
+                "name": "Private Company Registration",
+                "data": "Incorporate a private limited company with name approval, DIN, PAN, TAN and MCA filings."
+            },
+            {
+                "name": "LLP Registration",
+                "data": "Form a Limited Liability Partnership with DSC, DPIN and LLP Agreement filing on MCA portal."
+            },
+            {
+                "name": "PAN Application",
+                "data": "Apply for a Permanent Account Number (49A/49AA) for individuals, firms or foreign entities."
+            },
+            {
+                "name": "TAN Application",
+                "data": "Obtain Tax Deduction & Collection Account Number to comply with TDS/TCS provisions."
+            },
+            {
+                "name": "DSC [Class 3 – 2 Years Validity]",
+                "data": "Issue Class‑3 Digital Signature Certificate (USB token) valid for two years for MCA, GST and e‑tendering."
+            }
+        ]
+    },
+    {
+        "banner": {
+            "img": "/images/banner/abt.jpg",
+            "title": "Taxation"
+        },
+        "slug": "taxation",
+        "name": "Taxation",
+        "description": "Accurate, on‑time tax filing and advisory for individuals and businesses.",
+        "image": "/images/sevices/1.jpg",
+        "subServices": [
+            {
+                "name": "Income Tax Return - Salary",
+                "data": "Preparation and e‑filing of ITR‑1/2 for salaried individuals including Form‑16 reconciliation."
+            },
+            {
+                "name": "Income Tax Return -Business",
+                "data": "Compute income, claim deductions and file ITR‑3/4/5/6 for proprietors, firms and companies."
+            },
+            {
+                "name": "GST Return – Small & Large",
+                "data": "Monthly/quarterly GSTR‑1, GSTR‑3B, CMP‑08 and annual GSTR‑9 filings for all turnover slabs."
+            },
+            {
+                "name": "GST LUT Bond",
+                "data": "Apply and renew Letter of Undertaking to export goods/services without payment of IGST."
+            },
+            {
+                "name": "TDS - Salary Return",
+                "data": "Quarterly filing of Form 24Q for employers, including challan mapping and Form‑16 generation."
+            },
+            {
+                "name": "TDS/ TCS Return",
+                "data": "Prepare and upload Form 26Q/27Q/27EQ for non‑salary TDS and TCS with error‑free FVU validation."
+            },
+            {
+                "name": "PTRC Payment & Return",
+                "data": "Calculate, pay and file professional tax returns under Maharashtra PTRC regulations."
+            },
+            {
+                "name": "PTEC Payment",
+                "data": "Annual self‑assessment payment of Professional Tax Enrolment Certificate liability."
+            },
+            {
+                "name": "PF Payment & Return",
+                "data": "Generate ECR, remit EPF contributions and file monthly/annual returns (Form 5A, 3A, 6A)."
+            },
+            {
+                "name": "ESIC Payment & Return",
+                "data": "Prepare challans and upload ESIC returns for insured employees, ensuring timely compliance."
+            },
+            {
+                "name": "MLWF Payment",
+                "data": "Compute and deposit Maharashtra Labour Welfare Fund contributions with half‑yearly returns."
+            }
+        ]
+    },
+    {
+        "banner": {
+            "img": "/images/banner/abt.jpg",
+            "title": "Other Services"
+        },
+        "slug": "other-services",
+        "name": "Other Services",
+        "description": "Specialised corporate changes and employee benefit support.",
+        "image": "/images/sevices/2.jpg",
+        "subServices": [
+            {
+                "name": "PF Withdrawal Services",
+                "data": "End‑to‑end assistance in filing Form 19/10C/31 for full, partial or advance PF withdrawals."
+            },
+            {
+                "name": "Change of Name of Company",
+                "data": "Draft resolutions, obtain name approval (RUN) and file MGT‑14 & INC‑24 to effect a new company name."
+            },
+            {
+                "name": "Change of Name of LLP",
+                "data": "Secure name reservation (RUN‑LLP) and file Form 5 & 3 to officially alter LLP name."
+            },
+            {
+                "name": "Closure of Private Company/LLP",
+                "data": "Strike off inactive entities through Form STK‑2 or LLP Form 24, including statement of accounts."
+            }
+        ]
+    },
+    {
+        "banner": {
+            "img": "/images/banner/abt.jpg",
+            "title": "Certification"
+        },
+        "slug": "certification",
+        "name": "Certification",
+        "description": "Issue of official certificates that validate compliance, capacity or standards.",
+        "image": "/images/sevices/certification.jpg",
+        "subServices": [
+            {
+                "name": "RERA Certificate",
+                "data": "Project registration and certification under the Real Estate (Regulation & Development) Act."
+            },
+            {
+                "name": "Turnover Certificate",
+                "data": "CA‑attested certificate of annual sales/turnover required for tenders and loan proposals."
+            },
+            {
+                "name": "Net-worth Certificate",
+                "data": "Assess and certify promoters’ net‑worth for visa, bank finance or bidding eligibility."
+            },
+            {
+                "name": "Pollution Certificate",
+                "data": "Obtain Consent to Operate / Consent to Establish or PUC certificates per pollution norms."
+            },
+            {
+                "name": "ISO Certification",
+                "data": "Facilitate audits and documentation for ISO 9001, 14001, 45001, etc., until certification."
+            }
+        ]
+    },
+    {
+        "banner": {
+            "img": "/images/banner/abt.jpg",
+            "title": "Audit"
+        },
+        "slug": "audit",
+        "name": "Audit",
+        "description": "Independent verification of financial statements, processes and statutory records.",
+        "image": "/images/sevices/audit.jpg",
+        "subServices": [
+            {
+                "name": "Statutory Audit",
+                "data": "Audit of company accounts under the Companies Act, 2013, providing true & fair view opinion."
+            },
+            {
+                "name": "Cost Audit",
+                "data": "Examine cost records of specified industries as mandated by MCA cost‑audit orders."
+            },
+            {
+                "name": "Secretarial Audit",
+                "data": "PCS‑led compliance audit covering company law, SEBI, FEMA and other secretarial standards."
+            },
+            {
+                "name": "Internal Audit",
+                "data": "Risk‑based review of internal controls, processes and governance for continual improvement."
+            },
+            {
+                "name": "Concurrent Audit",
+                "data": "Real‑time audit of high‑value transactions in banks/NBFCs to detect irregularities early."
+            },
+            {
+                "name": "Stock Audit",
+                "data": "Physical verification and valuation of inventory pledged to banks or investors."
+            },
+            {
+                "name": "Bank Audit",
+                "data": "Statutory branch or central audit of banks per RBI guidelines, including LFAR reporting."
+            },
+            {
+                "name": "GST Audit",
+                "data": "Examine GST records (GSTR‑9C) to certify turnover, ITC and tax liability reconciliation."
+            },
+            {
+                "name": "Tax Audit",
+                "data": "Audit under Section 44AB of the Income‑tax Act with Form 3CA/CB & 3CD e‑filing."
+            },
+            {
+                "name": "Financial Statement Audit",
+                "data": "Comprehensive audit of balance sheet, P&L and cash‑flows in accordance with IND‑AS/IGAAP."
+            }
+        ]
+    }
+]

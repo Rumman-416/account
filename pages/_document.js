@@ -3,7 +3,11 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <meta name="description" content="Samim Consultancy - Expert Tax Solutions for Your Business in Kalyan, Maharashtra" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </Head>
       <body className="antialiased">
         <Main />
         <NextScript />
