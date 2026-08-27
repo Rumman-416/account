@@ -9,7 +9,10 @@ const contactUs = () => {
   };
   return (
     <>
-      <Banner data={data} />
+      <Banner
+        data={data}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
+      />
       <ContactDetail />
     </>
   );

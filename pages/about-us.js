@@ -10,7 +10,10 @@ const aboutUs = () => {
   };
   return (
     <div>
-      <Banner data={data} />
+      <Banner
+        data={data}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
+      />
       <Overview />
       <div className="hr-gradient" />
       <MissionVision />

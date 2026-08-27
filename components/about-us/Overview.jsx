@@ -4,8 +4,15 @@ import Button from "../layout/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { slideInLeft, slideInRight, fadeUp, staggerContainer } from "../Animation/Variants";
+import Counter from "../reusableComponent/counter";
 
 const Overview = () => {
+  const stats = [
+    { count: "12", suffix: "+", desc: "Years of Excellence" },
+    { count: "102", suffix: "+", desc: "Clients Served" },
+    { count: "4.5", suffix: "", desc: "JustDial Rating" },
+  ];
+
   const highlights = [
     {
       icon: (
@@ -37,7 +44,7 @@ const Overview = () => {
   ];
 
   return (
-    <section className="containerx containery overflow-hidden">
+    <section className="containerx containery overflow-x-clip">
       <div className="flex flex-col lg:flex-row justify-center items-start gap-8 lg:gap-[4vw]">
         {/* Image */}
         <motion.div
@@ -45,10 +52,12 @@ const Overview = () => {
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
           variants={slideInRight(0.2)}
-          className="lg:w-[45%] w-full mx-auto"
+          className="lg:w-[45%] w-full mx-auto lg:sticky lg:top-28"
         >
           <div className="relative rounded-2xl overflow-hidden group">
-            <div className="aspect-[3/4] lg:aspect-[4/5]">
+            {/* Was 4/5 - a ~900px tall block next to a ~600px column, and the
+                photo is bright white so it swamped the dark layout. */}
+            <div className="relative aspect-[4/3] lg:aspect-[5/4]">
               <Image
                 fill
                 src="/images/home/h1.webp"
@@ -56,6 +65,7 @@ const Overview = () => {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-dark-950/30" />
             </div>
             {/* Floating badge */}
             <div className="absolute bottom-5 left-5 lg:bottom-[1.5vw] lg:left-[1.5vw] p-4 lg:p-[1.2vw] bg-dark-900/80 backdrop-blur-xl rounded-xl border border-white/[0.06]">
@@ -99,18 +109,40 @@ const Overview = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                className="flex items-start gap-4 lg:gap-[1vw] group"
+                className="group flex items-start gap-4 lg:gap-[1vw]
+                  rounded-2xl border border-white/[0.08]
+                  bg-gradient-to-b from-white/[0.05] to-white/[0.02]
+                  p-4 lg:p-[1.1vw]
+                  transition-all duration-400 hover:border-brand-500/30"
               >
-                <div className="flex-shrink-0 w-10 h-10 lg:w-[2.5vw] lg:h-[2.5vw] bg-brand-500/10 border border-brand-500/20 rounded-xl flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
+                <div className="flex-shrink-0 w-11 h-11 lg:w-[2.6vw] lg:h-[2.6vw] bg-brand-500/10 border border-brand-500/20 rounded-xl flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all duration-400">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-white text-sm lg:text-[1vw] font-medium mb-0.5">
+                  <h4 className="text-white text-sm lg:text-[1vw] font-medium mb-1">
                     {item.title}
                   </h4>
-                  <p className="content-xs text-white/40">{item.desc}</p>
+                  <p className="text-white/45 text-xs lg:text-[0.78vw] font-light leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </motion.div>
+            ))}
+          </div>
+
+          {/* The credibility numbers only lived on the home page, which is odd
+              for the page that exists to establish credibility. */}
+          <div className="grid grid-cols-3 gap-3 lg:gap-[0.8vw] mb-8 lg:mb-[2.5vw]">
+            {stats.map((item) => (
+              <div
+                key={item.desc}
+                className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-4 lg:p-[1.1vw] text-center"
+              >
+                <Counter start={0} end={item.count} duration={1800} suffix={item.suffix} />
+                <p className="content-xs text-white/45 mt-1 lg:mt-[0.3vw]">
+                  {item.desc}
+                </p>
+              </div>
             ))}
           </div>
 

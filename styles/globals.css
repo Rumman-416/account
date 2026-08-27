@@ -14,13 +14,46 @@
   box-sizing: border-box;
 }
 
+/* Lenis animates scrolling in JS. Native smooth scrolling fights it for
+   control of the same scroll position, which is what produces the stutter
+   and snap-back on wheel and anchor jumps. */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
   @apply bg-dark-950 text-white font-sans antialiased;
-  overflow-x: hidden;
+  /* `clip` rather than `hidden`: overflow-x: hidden promotes the root to a
+     scroll container, which silently breaks `position: sticky` descendants
+     (e.g. the services detail image). `clip` crops without that side effect. */
+  overflow-x: clip;
+}
+
+/* ============================================
+   LENIS RUNTIME CLASSES
+   ============================================ */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* Lets lenis.stop() lock the page (used by the mobile menu). */
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Iframes swallow wheel events mid-scroll and stall the animation. */
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 ::selection {
@@ -63,42 +96,49 @@ body {
 
 /* ============================================
    TYPOGRAPHY SYSTEM
+
+   Line height is pinned to each font size with the `text-<size>/<leading>`
+   syntax rather than a separate `leading-*` utility. Tailwind's text-* sizes
+   ship their own line-height, so a bare `leading-[1.15]` sits unprefixed while
+   `md:text-4xl` drops line-height:2.5rem inside a media query that outranks it
+   - and the `lg:text-[Xvw]` arbitrary sizes carry no line-height at all. That
+   left headings stuck at a 40px line box while the font grew to 67px.
    ============================================ */
 
 .heading-xl {
-  @apply text-4xl md:text-5xl lg:text-[5.5vw] font-semibold leading-[1.05] tracking-[-0.03em];
+  @apply text-4xl/[1.05] md:text-5xl/[1.05] lg:text-[5.5vw]/[1.05] font-semibold tracking-[-0.03em];
 }
 
 .heading {
-  @apply text-3xl md:text-4xl lg:text-[3.5vw] font-semibold leading-[1.15] tracking-[-0.02em];
+  @apply text-3xl/[1.15] md:text-4xl/[1.15] lg:text-[3.5vw]/[1.15] font-semibold tracking-[-0.02em];
 }
 
 .heading-md {
-  @apply text-2xl md:text-3xl lg:text-[2.5vw] font-semibold leading-[1.2] tracking-[-0.01em];
+  @apply text-2xl/[1.2] md:text-3xl/[1.2] lg:text-[2.5vw]/[1.2] font-semibold tracking-[-0.01em];
 }
 
 .heading-sm {
-  @apply text-xl md:text-2xl lg:text-[1.8vw] font-semibold leading-[1.25];
+  @apply text-xl/[1.25] md:text-2xl/[1.25] lg:text-[1.8vw]/[1.25] font-semibold;
 }
 
 .subheading {
-  @apply text-sm md:text-base lg:text-[1.1vw] font-medium uppercase tracking-[0.15em] text-brand-500;
+  @apply text-sm/[1.4] md:text-base/[1.4] lg:text-[1.1vw]/[1.4] font-medium uppercase tracking-[0.15em] text-brand-500;
 }
 
 .content-lg {
-  @apply text-base md:text-lg lg:text-[1.15vw] leading-relaxed font-light;
+  @apply text-base/relaxed md:text-lg/relaxed lg:text-[1.15vw]/relaxed font-light;
 }
 
 .content {
-  @apply text-sm md:text-base lg:text-[1vw] leading-relaxed font-light;
+  @apply text-sm/relaxed md:text-base/relaxed lg:text-[1vw]/relaxed font-light;
 }
 
 .content-sm {
-  @apply text-xs md:text-sm lg:text-[0.85vw] leading-relaxed font-light;
+  @apply text-xs/relaxed md:text-sm/relaxed lg:text-[0.85vw]/relaxed font-light;
 }
 
 .content-xs {
-  @apply text-[10px] md:text-xs lg:text-[0.75vw] leading-relaxed font-light;
+  @apply text-[10px]/relaxed md:text-xs/relaxed lg:text-[0.75vw]/relaxed font-light;
 }
 
 /* ============================================
@@ -277,6 +317,75 @@ body {
   opacity: 1;
   transform: translateY(0);
   transition: all 0.5s ease-out;
+}
+
+/* ============================================
+   TESTIMONIAL CAROUSEL
+   ============================================ */
+
+/* Cards stretch to the tallest slide instead of each sizing to its own text. */
+.testimonial-swiper .swiper-slide {
+  height: auto;
+  opacity: 0.45;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.testimonial-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Only one card is visible below lg, so dimming it would just look broken. */
+@media (max-width: 1023px) {
+  .testimonial-swiper .swiper-slide {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The dots live outside the Swiper element, so Swiper's default absolute
+   positioning would rip them out of the controls row and stretch them to
+   full width - which shoved the arrows to the page edges. */
+.testimonial-dots.swiper-pagination,
+.testimonial-dots.swiper-pagination-horizontal {
+  /* Swiper's own width:100%/left:0 rule has equal specificity and loads after
+     this file, so it needs !important to lose. */
+  position: static !important;
+  width: auto !important;
+  flex: 0 0 auto;
+}
+
+.testimonial-dots .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  margin: 0 4px !important;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  transition: all 0.35s ease;
+}
+
+.testimonial-dots .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 999px;
+  background: #f5683a;
+}
+
+.btn-next-prev {
+  @apply w-10 h-10 lg:w-[2.6vw] lg:h-[2.6vw] shrink-0
+    inline-flex items-center justify-center rounded-full
+    border border-white/10 text-white/60
+    transition-all duration-300
+    hover:border-brand-500 hover:text-brand-500
+    hover:shadow-[0_0_24px_-6px_rgba(245,104,58,0.6)];
+}
+
+.btn-next-prev svg {
+  @apply w-4 h-4 lg:w-[1vw] lg:h-[1vw];
+}
+
+.btn-next-prev.swiper-button-disabled {
+  @apply opacity-30 pointer-events-none;
 }
 
 /* ============================================

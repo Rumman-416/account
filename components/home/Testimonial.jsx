@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Navigation, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
 
 const Testimonial = () => {
   const data = [
@@ -52,6 +52,8 @@ const Testimonial = () => {
     <section className="relative overflow-hidden py-16 lg:py-[6vw]">
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900/50 to-dark-950" />
+      {/* Brand glow so the cards sit on something rather than on flat black */}
+      <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[35vw] rounded-full bg-brand-500/[0.07] blur-[120px]" />
 
       <div className="relative z-10">
         {/* Header */}
@@ -71,35 +73,50 @@ const Testimonial = () => {
         </motion.div>
 
         {/* Carousel */}
-        <div className="containerx">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp(0.2)}
+          className="containerx"
+        >
           <Swiper
-            cssMode={false}
-            grabCursor={true}
-            keyboard={true}
-            freeMode={false}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
+            className="testimonial-swiper !pb-2"
+            grabCursor
+            keyboard
+            autoplay={{ delay: 4500, disableOnInteraction: false }}
             breakpoints={{
               0: { slidesPerView: 1, spaceBetween: 16 },
-              768: { slidesPerView: 1.5, spaceBetween: 24 },
-              1024: { slidesPerView: 2.5, spaceBetween: 24 },
+              768: { slidesPerView: 2, spaceBetween: 24 },
+              1024: { slidesPerView: 3, spaceBetween: 24 },
             }}
-            centeredSlides={true}
-            navigation={{
-              nextEl: ".btn-next-test",
-              prevEl: ".btn-prev-test",
-            }}
-            allowTouchMove={true}
-            loop={true}
-            modules={[Navigation, Mousewheel, Keyboard, Autoplay]}
+            centeredSlides
+            loop
+            navigation={{ nextEl: ".btn-next-test", prevEl: ".btn-prev-test" }}
+            pagination={{ el: ".testimonial-dots", clickable: true }}
+            modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
           >
             {data.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="card-glass p-6 lg:p-[2vw] h-full min-h-[200px] lg:min-h-[14vw] flex flex-col justify-between group hover:border-brand-500/20 transition-all duration-500">
+                <article
+                  className="group relative h-full flex flex-col overflow-hidden
+                    rounded-2xl border border-white/[0.08]
+                    bg-gradient-to-b from-white/[0.06] to-white/[0.02]
+                    p-6 lg:p-[1.8vw]
+                    transition-colors duration-500
+                    hover:border-brand-500/30"
+                >
+                  {/* Decorative quote mark */}
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 32 32"
+                    className="absolute -top-1 right-4 lg:right-[1.4vw] w-14 h-14 lg:w-[4vw] lg:h-[4vw] fill-brand-500/[0.13]"
+                  >
+                    <path d="M12.6 8v6.4H8.4c0 3.5 1.4 5.6 4.2 6.3V24C7.5 23.2 4.8 19.7 4.8 14V8h7.8zm14.6 0v6.4H23c0 3.5 1.4 5.6 4.2 6.3V24c-5.1-.8-7.8-4.3-7.8-10V8h7.8z" />
+                  </svg>
+
                   {/* Stars */}
-                  <div className="flex gap-1 mb-4 lg:mb-[1vw]">
+                  <div className="relative flex gap-1 mb-4 lg:mb-[1vw]">
                     {[...Array(item.ratings)].map((_, i) => (
                       <svg
                         key={i}
@@ -113,33 +130,58 @@ const Testimonial = () => {
                   </div>
 
                   {/* Quote */}
-                  <p className="content text-white/60 font-light leading-relaxed flex-1">
+                  <p className="relative content text-white/70 flex-1">
                     &ldquo;{item.testimonial}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="mt-5 lg:mt-[1.5vw] pt-4 lg:pt-[1vw] border-t border-white/[0.06]">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-brand-500/20 border border-brand-500/30 flex items-center justify-center">
-                        <span className="text-brand-500 text-sm lg:text-[0.9vw] font-semibold">
+                  <div className="relative mt-6 lg:mt-[1.6vw] pt-5 lg:pt-[1.2vw] border-t border-white/[0.08]">
+                    <div className="flex items-center gap-3 lg:gap-[0.8vw]">
+                      <div className="shrink-0 w-11 h-11 lg:w-[2.8vw] lg:h-[2.8vw] rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-[0_4px_14px_-4px_rgba(245,104,58,0.6)]">
+                        <span className="text-white text-base lg:text-[1vw] font-semibold">
                           {item.name.charAt(0)}
                         </span>
                       </div>
-                      <div>
-                        <p className="text-white text-sm lg:text-[0.85vw] font-medium">
+                      <div className="min-w-0">
+                        <p className="text-white text-sm lg:text-[0.9vw] font-medium truncate">
                           {item.name}
                         </p>
-                        <p className="text-white/30 text-xs lg:text-[0.65vw]">
+                        <p className="text-white/40 text-xs lg:text-[0.7vw] truncate">
                           {item.role}
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
+                </article>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+
+          {/* Controls */}
+          <div className="mt-8 lg:mt-[2.5vw] flex items-center justify-center gap-5 lg:gap-[1.5vw]">
+            <button
+              type="button"
+              aria-label="Previous testimonial"
+              className="btn-next-prev btn-prev-test"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="testimonial-dots flex items-center justify-center" />
+
+            <button
+              type="button"
+              aria-label="Next testimonial"
+              className="btn-next-prev btn-next-test"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

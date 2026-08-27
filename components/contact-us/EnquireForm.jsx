@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../layout/Button";
+import services from "../data/services";
 
 const EnquireForm = () => {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm({
     mode: "onBlur",
     reValidateMode: "onChange",
   });
+
+  // A native select shows the selected option in the control's own colour, so
+  // dim it while the placeholder option is active to match the real inputs.
+  const selectedService = watch("service");
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -90,6 +96,47 @@ const EnquireForm = () => {
             </p>
           )}
         </div>
+      </div>
+
+      {/* Service (optional) */}
+      <div className="relative">
+        <select
+          defaultValue=""
+          /* `.input-field` is declared after @tailwind utilities, so its
+             @apply'd colour outranks a plain text-white/30 utility - hence the
+             `!`, same as the !border-red-500 used for errors below. */
+          className={`input-field appearance-none cursor-pointer pr-12 lg:pr-[3vw] ${
+            selectedService ? "!text-white" : "!text-white/30"
+          }`}
+          {...register("service")}
+        >
+          <option value="" className="bg-dark-900 text-white/60">
+            Service you&apos;re interested in (optional)
+          </option>
+          {services.map((service) => (
+            <option
+              key={service.slug}
+              value={service.slug}
+              className="bg-dark-900 text-white"
+            >
+              {service.name}
+            </option>
+          ))}
+        </select>
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute right-5 lg:right-[1.2vw] top-1/2 -translate-y-1/2 w-4 h-4 lg:w-[1vw] lg:h-[1vw] text-white/40"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.75}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
       </div>
 
       {/* Message */}

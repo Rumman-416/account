@@ -56,7 +56,7 @@ const ExperienceSection = () => {
         >
           {/* Main image */}
           <div className="relative rounded-2xl overflow-hidden group">
-            <div className="aspect-[4/3] lg:aspect-[16/11]">
+            <div className="relative aspect-[4/3] lg:aspect-[16/11]">
               <Image
                 fill
                 src="/images/home/overview/2.jpg"
@@ -64,12 +64,7 @@ const ExperienceSection = () => {
                 alt="Financial planning"
                 sizes="(max-width: 1024px) 100vw, 48vw"
               />
-            </div>
-            {/* Overlay badge */}
-            <div className="absolute bottom-4 left-4 lg:bottom-[1.5vw] lg:left-[1.5vw] px-4 py-2 lg:px-[1vw] lg:py-[0.5vw] bg-brand-500 rounded-xl">
-              <p className="text-white text-xs lg:text-[0.8vw] font-medium">
-                12+ Years of Trust
-              </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent" />
             </div>
           </div>
 
@@ -78,12 +73,12 @@ const ExperienceSection = () => {
             {stats.map((item, index) => (
               <div
                 key={index}
-                className="card-glass p-4 lg:p-[1.2vw] text-center"
+                className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-4 lg:p-[1.2vw] text-center"
               >
                 <Counter
                   start={0}
                   end={item.count}
-                  duration={2500}
+                  duration={1800}
                   suffix={item.suffix}
                 />
                 <p className="content-xs text-white/50 mt-1 lg:mt-[0.3vw]">

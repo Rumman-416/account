@@ -39,7 +39,14 @@ const ServiceDetail = () => {
 
   return (
     <>
-      <Banner data={data?.banner} />
+      <Banner
+        data={data?.banner}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: data?.name },
+        ]}
+      />
       <ServicesDetail data={data} />
     </>
   );

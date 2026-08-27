@@ -4,39 +4,52 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "./Button";
+import { useContactModal } from "./ContactModalProvider";
+import { useLenis, useScrollLock } from "./SmoothScroll";
 
 const Header = () => {
   const router = useRouter();
   const [isScrolledDown, setIsScrolledDown] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [sideBar, setSideBar] = useState(false);
+  const { openContactModal } = useContactModal();
+  const lenis = useLenis();
   const [isTop, setIsTop] = useState(true);
+  // A ref, not state: keeping the previous offset in state re-ran this effect
+  // on every scroll event, tearing down and re-adding the listener each frame.
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsTop(currentScrollY < 50);
+    // Smooth scrolling emits a lot of sub-pixel deltas. Without a threshold
+    // the direction check flips constantly and the header flickers.
+    const DIRECTION_THRESHOLD = 3;
 
-      if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-        setIsScrolledDown(true);
-      } else {
-        setIsScrolledDown(false);
+    const update = (position) => {
+      const delta = position - lastScrollY.current;
+      setIsTop(position < 50);
+
+      if (Math.abs(delta) > DIRECTION_THRESHOLD) {
+        setIsScrolledDown(position > 100 && delta > 0);
+        lastScrollY.current = position;
       }
-      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    if (sideBar) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (lenis) {
+      // targetScroll is where the wheel has *asked* to go and it updates on the
+      // input event itself. window.scrollY keeps drifting the old way through
+      // Lenis's momentum, which left the bar ~450ms late on a scroll-up.
+      const onScroll = () => update(lenis.targetScroll);
+      lenis.on("scroll", onScroll);
+      onScroll();
+      return () => lenis.off("scroll", onScroll);
     }
-    return () => { document.body.style.overflow = ""; };
-  }, [sideBar]);
+
+    const onScroll = () => update(window.scrollY);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [lenis]);
+
+  useScrollLock(sideBar);
 
   const nav = [
     { name: "Home", link: "/" },
@@ -56,20 +69,29 @@ const Header = () => {
       <motion.header
         initial={{ y: 0 }}
         animate={{ y: isScrolledDown ? -120 : 0 }}
-        transition={{ type: "spring", stiffness: 120, damping: 25 }}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        /* An ease-out tween, not a spring: the original spring (120/25) drifted
+           for most of a second, and a stiffer one was overdamped and crawled.
+           This covers most of the distance in the first few frames. */
+        transition={{ type: "tween", duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+        /* transition-[padding], not transition-all: `all` covers `transform`,
+           so every frame Framer wrote was itself re-animated by CSS over 500ms
+           and the bar crawled instead of moving. */
+        className={`fixed top-0 left-0 w-full z-50 transition-[padding] duration-500 ${
           isTop
             ? "py-4 lg:py-[0.5vw]"
             : "py-3 lg:py-[0.35vw]"
         }`}
       >
         <div
+          /* `border` stays on in both states and only its colour changes -
+             adding the border on scroll made the pill grow 1px and nudged
+             everything inside it. */
           className={`mx-auto w-[92%] lg:w-[88%] flex items-center justify-between
-            rounded-full transition-all duration-500
+            rounded-full border transition-all duration-500
             ${
               isTop
-                ? "bg-transparent backdrop-blur-none"
-                : "bg-dark-900/80 backdrop-blur-xl border border-white/[0.06]"
+                ? "bg-white/[0.03] backdrop-blur-md border-white/[0.10]"
+                : "bg-dark-900/85 backdrop-blur-xl border-white/[0.16] shadow-[0_8px_32px_-12px_rgba(0,0,0,0.7)]"
             }
             px-5 py-3 lg:px-[1.5vw] lg:py-[0.5vw]
           `}
@@ -102,6 +124,7 @@ const Header = () => {
                   {router.pathname === item.link && (
                     <motion.span
                       layoutId="activeNav"
+                      layoutDependency={router.pathname}
                       className="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-500 rounded-full"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
@@ -114,9 +137,7 @@ const Header = () => {
           {/* Desktop CTA + Mobile Menu */}
           <div className="flex items-center gap-3">
             <div className="hidden lg:block">
-              <Link href="/contact-us">
-                <Button text="Get in Touch" />
-              </Link>
+              <Button text="Get in Touch" onClick={openContactModal} />
             </div>
             <button
               onClick={() => setSideBar(true)}
@@ -190,9 +211,14 @@ const Header = () => {
 
                 {/* Bottom CTA */}
                 <div className="mt-auto">
-                  <Link href="/contact-us" onClick={() => setSideBar(false)}>
-                    <Button text="Get in Touch" className="w-full justify-center" />
-                  </Link>
+                  <Button
+                    text="Get in Touch"
+                    className="w-full justify-center"
+                    onClick={() => {
+                      setSideBar(false);
+                      openContactModal();
+                    }}
+                  />
                 </div>
               </div>
             </motion.div>

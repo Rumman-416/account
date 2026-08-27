@@ -130,7 +130,9 @@ const HeroSection = () => {
       {/* Main Content */}
       <motion.div
         style={{ y: textY, opacity }}
-        className="relative z-10 h-full flex flex-col justify-center items-center px-5"
+        /* The header is fixed and the scroll cue is pinned to the bottom, so the
+             centred content reserves room for both instead of sliding under them. */
+          className="relative z-10 h-full flex flex-col justify-center items-center px-5 pt-24 lg:pt-[5.5vw] pb-24 lg:pb-[7vw]"
       >
         {/* Tagline */}
         <motion.div
